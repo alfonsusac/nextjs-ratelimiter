@@ -15,12 +15,12 @@ export default function Home({ searchParams }:any) {
         "use server"
         console.log(getUserIP())
         // Rate Limit
-        const limit = 10 // seconds
+        const limit = 20 // seconds
         const rateLimitedUntil = await unstable_cache(async () => {
           console.log("Running unstable cache fn")
           return Date.now() + (limit * 1000)
         }, [], {
-          revalidate: 10
+          revalidate: 20
         })()
 
         // Check if ratelimited
