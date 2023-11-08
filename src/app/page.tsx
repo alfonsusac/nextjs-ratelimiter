@@ -17,8 +17,9 @@ export default function Home({ searchParams }:any) {
         // Rate Limit
         const limit = 10 // seconds
         const rateLimitedUntil = await unstable_cache(async () => {
+          console.log("Running unstable cache fn")
           return Date.now() + (limit * 1000)
-        }, [getUserIP()], {
+        }, [], {
           revalidate: 10
         })()
 
