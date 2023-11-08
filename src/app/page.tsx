@@ -13,10 +13,11 @@ export default function Home({ searchParams }:any) {
     <>
       <form action={ async () => {
         "use server"
+        console.log(getUserIP())
         // Rate Limit
         const limit = 10 // seconds
         const rateLimitedUntil = await unstable_cache(async () => {
-          return Date.now() + limit * 1000
+          return Date.now() + (limit * 1000)
         }, [getUserIP()], {
           revalidate: 10
         })()
