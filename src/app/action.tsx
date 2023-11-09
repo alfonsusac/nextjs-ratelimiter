@@ -3,17 +3,13 @@
 import { unstable_cache } from "next/cache"
 import { cookies, headers } from "next/headers"
 import { redirect } from "next/navigation"
+import { ratelimit } from "./ratelimit"
 
 export const onTodoSubmit = async () => {
   console.log(getUserIP())
   // Rate Limit
   const limit = 20 // seconds
-  const rateLimitedUntil = await unstable_cache(async () => {
-    console.log("Running unstable cache fn")
-    return Date.now() + (limit * 1000)
-  }, [], {
-    revalidate: 20
-  })()
+  const rateLimitedUntil = await ratelimit()
 
   // Check if ratelimited
   console.log("RateLimitUntil: " + rateLimitedUntil)
