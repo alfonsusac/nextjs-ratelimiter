@@ -8,7 +8,6 @@ import { ratelimit } from "./ratelimit"
 export const onTodoSubmit = async () => {
   console.log(getUserIP())
   // Rate Limit
-  const limit = 20 // seconds
   const rateLimitedUntil = await ratelimit()
 
   // Check if ratelimited

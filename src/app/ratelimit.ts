@@ -5,5 +5,6 @@ export const ratelimit = unstable_cache(async () => {
   const rateLimitUntil = Date.now() + (20 * 1000)
   return rateLimitUntil
 }, [], {
-  revalidate: 20
+  revalidate: 20,
+  
 })
