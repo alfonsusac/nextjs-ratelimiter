@@ -3,7 +3,7 @@ import { ratelimit } from "@/app/ratelimit"
 
 export async function GET() {
   // Rate Limit
-  const rateLimitedUntil = await ratelimit()
+  const rateLimitedUntil = await ratelimit("")
 
   // Check if ratelimited
   console.log("RateLimitUntil: " + rateLimitedUntil)
