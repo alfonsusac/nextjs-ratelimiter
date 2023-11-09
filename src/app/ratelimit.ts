@@ -1,8 +1,7 @@
 import { headers } from "next/headers"
 
 export const ratelimit = async (id: string) => {
-  console.log("RateLimiting")
-  const header = headers()
+  console.log("RateLimiting Function")
   // console.log(header)
 
   const proto = headers().get("x-forwarded-proto")
@@ -13,5 +12,7 @@ export const ratelimit = async (id: string) => {
   // console.log(`${hosturl.toString()}api/ratelimit/${encodeURIComponent(id)}`);
 
   // return Date.now()
-  return await (await fetch(`${hosturl.toString()}api/ratelimit/${encodeURIComponent(id)}`)).json()
+  const ratelimitid = encodeURIComponent(id)
+  console.log(ratelimitid)
+  return await (await fetch(`${hosturl.toString()}api/ratelimit/${encodeURIComponent(ratelimitid)}`)).json()
 }
