@@ -11,6 +11,9 @@ import { headers } from "next/headers"
 // })
 
 export const ratelimit = async (id: string) => {
+  console.log("RateLimiting")
+  const header = headers()
+  console.log(JSON.stringify(header, null, 1))
   const url = headers().get('referer')
   const host = headers().get('host')
   const hosturl = new URL(host ?? "")
