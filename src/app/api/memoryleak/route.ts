@@ -9,7 +9,6 @@ export function GET() {
 
   return Response.json({
     size: Object.keys(obj).length,
-    obj
   })
 }
 
