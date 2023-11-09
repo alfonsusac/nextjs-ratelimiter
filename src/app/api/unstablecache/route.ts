@@ -6,7 +6,7 @@ const cachedRandomize = unstable_cache(async () => {
 
 export async function GET() {
   // Rate Limit
-  const random = cachedRandomize()
+  const random = await cachedRandomize()
   
   return Response.json(random)
 }
