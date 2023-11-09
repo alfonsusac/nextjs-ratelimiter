@@ -17,13 +17,16 @@ export const ratelimit = async (id: string) => {
   // console.log(JSON.stringify(header, null, 1))
 
 
-  const url = headers().get('referer')
+  const referer = headers().get('referer')
+
+  const proto = headers().get("x-forwarded-proto")
   const host = headers().get('host')
-  const hosturl = new URL(host ?? "")
+  new URL("https://nextjs-ratelimiter.vercel.app")
+  const hosturl = new URL(proto + "://" + host ?? "")
   console.log(hosturl.toString());
-  console.log(hosturl.protocol)
-  console.log(`${hosturl.toString()}/api/ratelimit/${encodeURIComponent(id)}`);
+  console.log(proto)
+  console.log(`${hosturl.toString()}api/ratelimit/${encodeURIComponent(id)}`);
 
   // return Date.now()
-  return await (await fetch(`http://localhost:3000/api/ratelimit`)).json()
+  return await (await fetch(`${hosturl.toString()}api/ratelimit/${encodeURIComponent(id)}`)).json()
 }
