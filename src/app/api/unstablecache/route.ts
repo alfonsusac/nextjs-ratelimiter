@@ -8,7 +8,7 @@ export async function GET() {
   // Rate Limit
   const random = await cachedRandomize()
   
-  return Response.json(random)
+  return Response.json({random})
 }
 
 export const dynamic = "force-dynamic"
